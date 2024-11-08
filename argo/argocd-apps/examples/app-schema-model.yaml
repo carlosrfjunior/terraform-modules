@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-autoscaler
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  info:
+    - name: url
+      value: https://github.com/kubernetes/autoscaler
+  project: default
+  source:
+    chart: cluster-autoscaler
+    targetRevision: 9.37.0
+    helm:
+      parameters:
+        - name: fullnameOverride
+          value: cluster-autoscaler
+        - name: awsRegion
+          value: us-east-1
+        - name: autoDiscovery.clusterName
+          value: data-dev-eks
+        - name: image.tag
+          value: v1.30.0
+        - name: rbac.serviceAccount.name
+          value: cluster-autoscaler-sa
+    repoURL: https://kubernetes.github.io/autoscaler
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=false
+      - ApplyOutOfSyncOnly=true

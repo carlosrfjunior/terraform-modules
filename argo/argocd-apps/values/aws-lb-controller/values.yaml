@@ -1,0 +1,5 @@
+defaultTargetType: ip
+serviceMonitor:
+  enabled: true
+ingressClassConfig:
+  default: true

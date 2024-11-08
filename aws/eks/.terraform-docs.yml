@@ -1,0 +1,28 @@
+# .terraform-docs.yml
+content: |-
+
+  {{ .Header }}
+
+  > [!TIP]
+  > At the end of this file you can see a basic example of how to use the module.
+
+  ## Documentations:
+  - [Custom Networking](./docs/custom-networking.md)
+  - [AWS EKS Add-ons](./docs/aws-eks-addons.md)
+  - [ArgoCD Applications](./docs/argocd-apps.md)
+
+
+  {{ .Providers }}
+  {{ .Requirements }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  {{ .Modules }}
+  {{ .Outputs }}
+  {{ .Footer }}
+
+  ## Full example implementation
+  ### AWS EKS Module - Example
+  `Source Reference File:` [example/main.tf](example/main.tf)
+  ```hcl
+  {{ include "example/main.tf" }}
+  ```

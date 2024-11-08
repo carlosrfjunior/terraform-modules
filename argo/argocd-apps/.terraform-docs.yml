@@ -1,0 +1,77 @@
+# .terraform-docs.yml
+content: |-
+  {{ .Header }}
+
+  ## Usage examples
+
+  <details>
+    <summary><b>Add new application in the module</b></summary>
+
+  1. Create `app_<app-name>.tf` file.
+  2. Use the [template-schema.tf](examples/template-schema.tf) file as a template.
+  3. Configure AWS EKS POD Identity [aws_eks_pod_identity.tf](aws_eks_pod_identity.tf) if your application requires access to AWS resources.
+    3.1. Referencies: https://registry.terraform.io/modules/terraform-aws-modules/eks-pod-identity/aws/latest
+  4. Add new variable input for the application in [variables.tf](variables.tf)
+
+  ```hcl
+  variable "app_name" {
+    description = "App Name configuration values"
+    type        = any
+    default     = {}
+  }
+  ```
+
+  5. Add the application to the map for installation on [main.tf](main.tf)
+
+  ```hcl
+  locals {
+    argocd_apps_map = {
+      ...
+      "app-name" = var.argocd_apps_enabled.app-name ? local.app-name : null,
+    }
+  }
+  ```
+
+  </details>
+
+  <details>
+    <summary><b>Add new application outside the module.</b></summary>
+
+  1. Create `app_<app-name>.tf` file.
+  2. Use the [template-schema.tf](examples/template-schema.tf) file as a template of the module.
+  3. Configure AWS EKS POD Identity [aws_eks_pod_identity.tf](aws_eks_pod_identity.tf) if your application requires access to AWS resources.
+    3.1. Referencies: https://registry.terraform.io/modules/terraform-aws-modules/eks-pod-identity/aws/latest
+  4. Add new variable input for the application in [variables.tf](variables.tf)
+
+  ```hcl
+  variable "app_name" {
+    description = "App Name configuration values"
+    type        = any
+    default     = {}
+  }
+  ```
+
+  5.
+
+  </details>
+
+  {{ .Providers }}
+  {{ .Requirements }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  {{ .Modules }}
+  {{ .Outputs }}
+  {{ .Footer }}
+
+
+  ## Full example implementation
+
+  ### Schema template for new applications
+  ```hcl
+  {{ include "examples/template-schema.tpl" }}
+  ```
+
+  ### Final template file
+  ```yaml
+  {{ include "examples/app-schema-model.yaml" }}
+  ```

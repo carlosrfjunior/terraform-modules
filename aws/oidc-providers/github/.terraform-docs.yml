@@ -1,0 +1,13 @@
+# .terraform-docs.yml
+content: |-
+  {{ .Header }}
+
+  ## Full example implementation
+  ### Main
+  ```hcl
+  {{ include "example/main.tf" }}
+  ```
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}

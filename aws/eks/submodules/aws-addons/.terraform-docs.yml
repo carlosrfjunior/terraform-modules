@@ -1,0 +1,21 @@
+# .terraform-docs.yml
+content: |-
+  {{ .Header }}
+
+  ## Configuring the application via AWS Addon
+
+  - To add new configurations to the application via addon, use the configuration_values ​​parameter as shown in the example below.
+  - Typically, the parameters follow the same structure as the application's values.yaml in helm chart in HCL format.
+  ```hcl
+  configuration_values = jsonencode(merge({
+                            key = value
+                            key = {
+                              key = value
+                            }
+                            }, var.addon-name))
+  ```
+  - [addon_aws_vpc_cni.tf](addon_aws_vpc_cni.tf) file example.
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
