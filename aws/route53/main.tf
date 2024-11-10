@@ -44,9 +44,9 @@ resource "aws_route53_zone" "child" {
   for_each = local.aws_route53_domains
   name     = try(each.key, null)
   dynamic "vpc" {
-    for_each = tobool(data.aws_route53_zone.parent[each.value[0]].private_zone) ? [1] : []
+    for_each = tobool(try(data.aws_route53_zone.parent[each.value[0]].private_zone, false)) ? [1] : []
     content {
-      vpc_id = module.vpc.vpc_id
+      vpc_id = data.aws_route53_zone.parent[each.value[0]].vpc_id
     }
   }
 }
