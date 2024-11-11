@@ -1,6 +1,6 @@
   <p align="center">
     <a href="https://github.com/carlosrfjunior/terraform-modules">
-      <image src="./docs/assets/hotmart-logo.png" style="width: 300px;">
+      <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
     </a>
   </p>
 
