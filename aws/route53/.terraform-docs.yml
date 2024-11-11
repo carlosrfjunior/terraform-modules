@@ -10,22 +10,6 @@ content: |-
 
   ## Full example implementation
 
-  ### Variable
-    ```hcl
-  {{ include "example/variables.tf" }}
-  ```
-
-  ### Provider
-  ```hcl
-  {{ include "example/providers.tf" }}
-  ```
-
-  ### Tagging
-  ```hcl
-  {{ include "example/tagging.tf" }}
-  ```
-
-
   ### Main
   ```hcl
   {{ include "example/main.tf" }}

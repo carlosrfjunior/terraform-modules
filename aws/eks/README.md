@@ -1,3 +1,8 @@
+<p align="center">
+  <a href="https://github.com/carlosrfjunior/terraform-modules">
+    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+  </a>
+</p>
 
 # AWS EKS Module and AWS EKS Addons Submodule
 
@@ -16,9 +21,9 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.62.0 |
-| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | 5.62.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | 0.12.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.75.0 |
+| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | 5.75.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.12.1 |
 ## Requirements
 
 | Name | Version |
@@ -27,6 +32,7 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.61 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.15.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.31.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | 0.12.1 |
 ## Resources
 
 | Name | Type |
@@ -34,9 +40,9 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | [aws_acm_certificate.cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate) | resource |
 | [aws_iam_policy.eks_pod_identity_agent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.eks_cluster_node_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.aws_ec2_container_registry_readonly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.aws_eks_cni_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.aws_eks_worker_node_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.eks_pod_identity_agent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_nat_gateway.private_nat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/nat_gateway) | resource |
 | [aws_route.intra_subnets_default_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
@@ -44,7 +50,7 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | [aws_route53_record.child_ns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_zone.child](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_vpc_peering_connection.vpc_peering](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection) | resource |
-| [time_sleep.eks_status](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [time_sleep.wait_for_resources](https://registry.terraform.io/providers/hashicorp/time/0.12.1/docs/resources/sleep) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_eks_cluster.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
@@ -58,11 +64,11 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_access_entries"></a> [access\_entries](#input\_access\_entries) | Map of access entries to add to the cluster | `any` | `{}` | no |
 | <a name="input_argocd"></a> [argocd](#input\_argocd) | ArgoCD Server configuration values | `any` | `{}` | no |
 | <a name="input_argocd_app"></a> [argocd\_app](#input\_argocd\_app) | ArgoCD Application configuration values | `any` | `{}` | no |
-| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, true)<br/>    nginx_ingress_external       = optional(bool, true)<br/>    nginx_ingress_internal       = optional(bool, true)<br/>    cluster_autoscaler           = optional(bool, true)<br/>    kube_prometheus_stack        = optional(bool, true)<br/>    metrics_server               = optional(bool, true)<br/>    external_dns                 = optional(bool, true)<br/>    argocd                       = optional(bool, true)<br/>    argocd_app                   = optional(bool, true)<br/>    argo_rollouts                = optional(bool, true)<br/>    prefect_server               = optional(bool, false)<br/>    prefect_worker               = optional(bool, false)<br/>    prefect_exporter             = optional(bool, false)<br/>    external_secrets             = optional(bool, false)<br/>    secrets_store_csi_driver     = optional(bool, true)<br/>    velero                       = optional(bool, true)<br/>    kyverno_policies             = optional(bool, true)<br/>    kyverno                      = optional(bool, true)<br/>  })</pre> | <pre>{<br/>  "argo_rollouts": true,<br/>  "argocd": true,<br/>  "argocd_app": true,<br/>  "aws_load_balancer_controller": true,<br/>  "cluster_autoscaler": true,<br/>  "external_dns": true,<br/>  "external_secrets": false,<br/>  "kube_prometheus_stack": true,<br/>  "kyverno": true,<br/>  "kyverno_policies": true,<br/>  "metrics_server": true,<br/>  "nginx_ingress_external": true,<br/>  "nginx_ingress_internal": true,<br/>  "prefect_exporter": true,<br/>  "prefect_server": false,<br/>  "prefect_worker": false,<br/>  "secrets_store_csi_driver": true,<br/>  "velero": true<br/>}</pre> | no |
-| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | (Optional) If configured, the module will create the subnets according to the list provided. Otherwise, it will follow the standard flow, creating them in the first 3 zones. | `list` | `[]` | no |
+| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, true)<br/>    nginx_ingress_external       = optional(bool, true)<br/>    nginx_ingress_internal       = optional(bool, true)<br/>    cluster_autoscaler           = optional(bool, true)<br/>    kube_prometheus_stack        = optional(bool, true)<br/>    metrics_server               = optional(bool, true)<br/>    external_dns                 = optional(bool, true)<br/>    argocd                       = optional(bool, true)<br/>    argocd_app                   = optional(bool, true)<br/>    argo_rollouts                = optional(bool, true)<br/>    secrets_store_csi_driver     = optional(bool, true)<br/>    velero                       = optional(bool, true)<br/>    kyverno_policies             = optional(bool, true)<br/>    kyverno                      = optional(bool, true)<br/>  })</pre> | <pre>{<br/>  "argo_rollouts": true,<br/>  "argocd": true,<br/>  "argocd_app": true,<br/>  "aws_load_balancer_controller": true,<br/>  "cluster_autoscaler": true,<br/>  "external_dns": true,<br/>  "kube_prometheus_stack": true,<br/>  "kyverno": true,<br/>  "kyverno_policies": true,<br/>  "metrics_server": true,<br/>  "nginx_ingress_external": true,<br/>  "nginx_ingress_internal": true,<br/>  "secrets_store_csi_driver": true,<br/>  "velero": true<br/>}</pre> | no |
+| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | (Optional) If configured, the module will create the subnets according to the list provided. Otherwise, it will follow the standard flow, creating them in the first 3 zones. | `list(string)` | `[]` | no |
 | <a name="input_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#input\_aws\_load\_balancer\_controller) | AWS Load Balancer Controller configuration values | `any` | `{}` | no |
 | <a name="input_aws_route53"></a> [aws\_route53](#input\_aws\_route53) | (Optional) Configure an existing DNS or create a new one in AWS Route53 | `any` | `{}` | no |
-| <a name="input_aws_route53_zone_arns"></a> [aws\_route53\_zone\_arns](#input\_aws\_route53\_zone\_arns) | (Optional) The Amazon Resource Name (ARN) of the Hosted Zone. | `list` | `[]` | no |
+| <a name="input_aws_route53_zone_arns"></a> [aws\_route53\_zone\_arns](#input\_aws\_route53\_zone\_arns) | (Optional) The Amazon Resource Name (ARN) of the Hosted Zone. | `list(string)` | `[]` | no |
 | <a name="input_cloudwatch_log_group_class"></a> [cloudwatch\_log\_group\_class](#input\_cloudwatch\_log\_group\_class) | (Optional) Specified the log class of the log group. Possible values are: `STANDARD` or `INFREQUENT_ACCESS` | `string` | `null` | no |
 | <a name="input_cloudwatch_log_group_retention_in_days"></a> [cloudwatch\_log\_group\_retention\_in\_days](#input\_cloudwatch\_log\_group\_retention\_in\_days) | (Optional) Number of days to retain log events. Default retention - `30 days.` | `number` | `30` | no |
 | <a name="input_cluster_addons"></a> [cluster\_addons](#input\_cluster\_addons) | (Optional) Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`. | `map(any)` | `{}` | no |
@@ -73,8 +79,8 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | (Required) Name of the EKS cluster. | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | (Required) Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.30`) | `string` | n/a | yes |
 | <a name="input_coredns"></a> [coredns](#input\_coredns) | CoreDNS configuration values | `any` | `{}` | no |
+| <a name="input_create"></a> [create](#input\_create) | (Optional) Indicates to the module that it is creating a new cluster. This option should only be used to create the new EKS cluster as soon as it is created `disable.` | `bool` | `true` | no |
 | <a name="input_create_database_subnets"></a> [create\_database\_subnets](#input\_create\_database\_subnets) | (Optional) Create the database subnets. | `bool` | `false` | no |
-| <a name="input_creating_cluster"></a> [creating\_cluster](#input\_creating\_cluster) | (Optional) Indicates to the module that it is creating a new cluster. This option should only be used to create the new EKS cluster as soon as it is created `disable.` | `bool` | `false` | no |
 | <a name="input_ebs_csi_driver"></a> [ebs\_csi\_driver](#input\_ebs\_csi\_driver) | AWS EBS CSI Driver configuration values | `any` | `{}` | no |
 | <a name="input_efs_csi_driver"></a> [efs\_csi\_driver](#input\_efs\_csi\_driver) | AWS EBS CSI Driver configuration values | `any` | `{}` | no |
 | <a name="input_eks_pod_identity_agent"></a> [eks\_pod\_identity\_agent](#input\_eks\_pod\_identity\_agent) | AWS EKS POD Identity configuration values | `any` | `{}` | no |
@@ -86,13 +92,9 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_managed_node_groups"></a> [managed\_node\_groups](#input\_managed\_node\_groups) | (Optional) Map of EKS managed node group definitions to create. | `map(any)` | `{}` | no |
 | <a name="input_metrics_server"></a> [metrics\_server](#input\_metrics\_server) | Metrics Server configuration values | `any` | `{}` | no |
 | <a name="input_nginx_ingress_external"></a> [nginx\_ingress\_external](#input\_nginx\_ingress\_external) | NGINX Ingress (External) Controller configuration values | `any` | `{}` | no |
-| <a name="input_nginx_ingress_external_ssl_certs"></a> [nginx\_ingress\_external\_ssl\_certs](#input\_nginx\_ingress\_external\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list` | `[]` | no |
+| <a name="input_nginx_ingress_external_ssl_certs"></a> [nginx\_ingress\_external\_ssl\_certs](#input\_nginx\_ingress\_external\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list(string)` | `[]` | no |
 | <a name="input_nginx_ingress_internal"></a> [nginx\_ingress\_internal](#input\_nginx\_ingress\_internal) | NGINX Ingress (Internal) Controller configuration values | `any` | `{}` | no |
-| <a name="input_nginx_ingress_internal_ssl_certs"></a> [nginx\_ingress\_internal\_ssl\_certs](#input\_nginx\_ingress\_internal\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list` | `[]` | no |
-| <a name="input_partition"></a> [partition](#input\_partition) | (Optional) The current AWS partition in which Terraform is working. | <pre>object({<br/>    id                 = optional(string, "aws")<br/>    dns_suffix         = optional(string, "amazonaws.com")<br/>    partition          = optional(string, "aws")<br/>    reverse_dns_prefix = optional(string, "com.amazonaws")<br/>  })</pre> | <pre>{<br/>  "dns_suffix": "amazonaws.com",<br/>  "id": "aws",<br/>  "partition": "aws",<br/>  "reverse_dns_prefix": "com.amazonaws"<br/>}</pre> | no |
-| <a name="input_prefect_exporter"></a> [prefect\_exporter](#input\_prefect\_exporter) | Perfect Exporter configuration values. **Ref:** `https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prometheus-prefect-exporter` | `any` | `{}` | no |
-| <a name="input_prefect_server"></a> [prefect\_server](#input\_prefect\_server) | Perfect Server configuration values.  **Ref:** `https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-server` | `any` | `{}` | no |
-| <a name="input_prefect_worker"></a> [prefect\_worker](#input\_prefect\_worker) | Perfect Worker configuration values. **Ref:** `https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-worker` | `any` | `{}` | no |
+| <a name="input_nginx_ingress_internal_ssl_certs"></a> [nginx\_ingress\_internal\_ssl\_certs](#input\_nginx\_ingress\_internal\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list(string)` | `[]` | no |
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS region to provider | `string` | n/a | yes |
 | <a name="input_secrets_store_csi_driver"></a> [secrets\_store\_csi\_driver](#input\_secrets\_store\_csi\_driver) | Secrets Store CSI Driver configuration values | `any` | `{}` | no |
@@ -107,10 +109,10 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_argocd-apps"></a> [argocd-apps](#module\_argocd-apps) | ../../argo/argocd-apps | n/a |
-| <a name="module_aws-addons"></a> [aws-addons](#module\_aws-addons) | ./submodules/aws-addons | n/a |
+| <a name="module_argocd_apps"></a> [argocd\_apps](#module\_argocd\_apps) | ../../argo/argocd-apps | n/a |
+| <a name="module_aws_addons"></a> [aws\_addons](#module\_aws\_addons) | ./submodules/aws-addons | n/a |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 20.0 |
-| <a name="module_tagging"></a> [tagging](#module\_tagging) | git@github.com:carlosrfjunior/terraform-modules.git//aws/tagging | main |
+| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../tagging | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 5.0 |
 ## Outputs
 
@@ -175,8 +177,7 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 /*
 * # AWS EKS for Data Team in Dev Environment
 * ## Naming convention
-* - {owner}-{env}{3}-[{suffix}]-{resource}{2,3}
-* - data-dev-eks
+* - {owner}_{env}{3}_[{suffix}]_{resource}{2,3}
 */
 locals {
   tags = {
@@ -190,7 +191,7 @@ locals {
 }
 
 # Naming convention exemplified above
-module "owner-env-suffix-resource" {
+module "owner_env_suffix_resource" {
 
   source          = "../"
   cluster_name    = "owner-env-suffix-resource" # Naming convention exemplified above
@@ -233,10 +234,6 @@ module "owner-env-suffix-resource" {
     kube_prometheus_stack        = true
     metrics_server               = true
     external_dns                 = true
-    prefect_server               = true
-    prefect_worker               = true
-    prefect_agent                = false
-    prefect_exporter             = true
     secrets_store_csi_driver     = true
     velero                       = true
     kyverno_policies             = true
@@ -273,9 +270,6 @@ module "owner-env-suffix-resource" {
     #   s3_backup_location = "arn:aws:s3:::bucket-name"
     valuesFile = file("${path.module}/values/velero/values.yaml")
   }
-  prefect_server = {
-    valuesFile = file("${path.module}/values/prefect-server/values.yaml")
-  }
   external_dns = {
     route53_zone_arns = ["arn:aws:route53:::hostedzone/*"]
     valuesFile        = file("${path.module}/values/external-dns/values.yaml")
@@ -292,7 +286,7 @@ module "owner-env-suffix-resource" {
 
   managed_node_groups = {
     # Naming convention exemplified above
-    owner-env-suffix-resource-main = {
+    owner_env_suffix_resource_main = {
       ami_type = "AL2023_x86_64_STANDARD"
       instance_types = [
         "t3.large",

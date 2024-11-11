@@ -1,27 +1,57 @@
-# AWS Route53 module
+<p align="center">
+  <a href="https://github.com/carlosrfjunior/terraform-modules">
+    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+  </a>
+</p>
+
+# AWS Route53 Module
 
 This module has the basic function of creating a new DNS record in AWS Route53 in a single account or cross-accounts.
 
+## Full example implementation
+
+### Main
+```hcl
+module "route53_domains" {
+  source = "../"
+
+  profile = "testing"
+  region  = "us-east-1"
+
+  aws_route53 = {
+
+    meudominio_com = {
+      private_zone = true
+      # vpc_id           = ""
+      record_dns_names = ["dev-meudominio.com"]
+    }
+
+  }
+
+  tags = {
+    product             = "aws"
+    environment         = "testing"
+    owner               = "sre"
+    cost_center         = "infrastructure"
+    resource            = "route53"
+    data_classification = "false"
+  }
+
+}
+```
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.75.0 |
+| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | 5.75.0 |
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.61 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.61 |
-| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | >= 5.61 |
-
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_tagging"></a> [tagging](#module\_tagging) | git@github.com:carlosrfjunior/terraform-modules.git//aws/tagging | main |
-
 ## Resources
 
 | Name | Type |
@@ -31,7 +61,6 @@ This module has the basic function of creating a new DNS record in AWS Route53 i
 | [aws_route53_record.child_ns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_zone.child](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_route53_zone.parent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -40,7 +69,11 @@ This module has the basic function of creating a new DNS record in AWS Route53 i
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS region to provider | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) the tags to add to created resources | `map(string)` | `{}` | no |
+## Modules
 
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../tagging | n/a |
 ## Outputs
 
 No outputs.
