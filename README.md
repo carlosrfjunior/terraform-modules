@@ -1,4 +1,10 @@
-# terraform-modules
+  <p align="center">
+    <a href="https://github.com/carlosrfjunior/terraform-modules">
+      <image src="./docs/assets/hotmart-logo.png" style="width: 300px;">
+    </a>
+  </p>
+
+# Terraform Modules
 
 Custom terraform modules from AWS, Databricks and other providers.
 
@@ -8,20 +14,7 @@ Custom terraform modules from AWS, Databricks and other providers.
 - [terraform-docs](https://terraform-docs.io/user-guide/installation/)
 - [pre-commit](https://pre-commit.com/#install)
 - [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform?tab=readme-ov-file)
-
-### Homebrew
-
-- If you are a macOS user, you can use Homebrew.
-
-```shell
-brew install terraform-docs
-```
-
-or
-
-```shell
-brew install terraform-docs/tap/terraform-docs
-```
+- [TFLint](https://github.com/terraform-linters/tflint)
 
 ## Pre-commit
 

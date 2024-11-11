@@ -1,22 +1,3 @@
-# locals {
-#   cluster_creating = var.cluster_status == "ACTIVE" ? 1 : 0
-# }
-# data "aws_iam_policy_document" "assume_role" {
-#   statement {
-#     effect = "Allow"
-
-#     principals {
-#       type        = "Service"
-#       identifiers = ["pods.eks.amazonaws.com"]
-#     }
-
-#     actions = [
-#       "sts:AssumeRole",
-#       "sts:TagSession"
-#     ]
-#   }
-# }
-
 data "aws_eks_cluster" "eks" {
   name = var.cluster_name
 }

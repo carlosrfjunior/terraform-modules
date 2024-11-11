@@ -40,7 +40,7 @@ locals {
 
   environments = [
     "sandbox",
-    "development",
+    "develop",
     "pre-prod",
     "quality",
     "production",

@@ -1,16 +1,11 @@
-resource "time_sleep" "eks_status" {
-  create_duration = "60s"
-  triggers = {
-    status = data.aws_eks_cluster.default.status
-  }
-}
+
 
 module "aws_addons" {
   source = "./submodules/aws-addons"
 
   # region = var.region
 
-  cluster_name           = var.cluster_name
+  cluster_name           = time_sleep.wait_for_resources.triggers.cluster_name
   cluster_addons         = var.cluster_addons
   cluster_addons_enabled = var.cluster_addons_enabled
 
@@ -24,6 +19,6 @@ module "aws_addons" {
 
   tags = module.tagging.tags
 
-  depends_on = [module.vpc, time_sleep.eks_status]
+  depends_on = [module.vpc]
 
 }

@@ -1,3 +1,4 @@
+
 module "argocd_apps" {
 
   source = "../../argo/argocd-apps"
@@ -5,11 +6,9 @@ module "argocd_apps" {
   region  = var.region
   profile = var.profile
 
-  cluster_name = module.eks.cluster_name
-  # cluster_endpoint  = module.eks.cluster_endpoint
-  cluster_version = module.eks.cluster_version
-  cluster_status  = time_sleep.eks_status.triggers.status
-  # oidc_provider_arn = module.eks.oidc_provider_arn
+  cluster_name    = time_sleep.wait_for_resources.triggers.cluster_name
+  cluster_version = time_sleep.wait_for_resources.triggers.cluster_version
+  cluster_status  = time_sleep.wait_for_resources.triggers.cluster_status
 
   argocd_apps_enabled = var.argocd_apps_enabled
   argocd_app          = var.argocd_app
