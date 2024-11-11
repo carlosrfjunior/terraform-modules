@@ -1,0 +1,8 @@
+policy: upsert-only # sync
+
+domainFilters:
+- domain1.com
+- domain2.com
+excludeDomains:
+- example1.com
+- example2.com

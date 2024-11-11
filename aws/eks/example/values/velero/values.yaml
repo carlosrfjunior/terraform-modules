@@ -1,0 +1,9 @@
+schedules:
+  daily:
+    disabled: false
+    schedule: "0 0 * * *"
+    useOwnerReferencesInBackup: false
+    paused: false
+    template:
+      ttl: "72h"
+      storageLocation: default

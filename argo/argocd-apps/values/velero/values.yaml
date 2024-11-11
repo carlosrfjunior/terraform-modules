@@ -1,0 +1,16 @@
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.10.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+schedules:
+  default:
+    disabled: false
+    schedule: "0 0 * * *"
+    useOwnerReferencesInBackup: false
+    paused: false
+    template:
+      ttl: "72h"
+      storageLocation: default

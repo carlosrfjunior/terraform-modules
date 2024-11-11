@@ -1,0 +1,19 @@
+# .terraform-docs.yml
+content: |-
+  <p align="center">
+    <a href="https://github.com/carlosrfjunior/terraform-modules">
+      <image src="../assets/hotmart-logo.png" style="width: 300px;">
+    </a>
+  </p>
+
+  {{ .Header }}
+
+  ## Full example implementation
+  ### Main
+  ```hcl
+  {{ include "example/main.tf" }}
+  ```
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
