@@ -1,6 +1,9 @@
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.60.0 |
 
 ## Providers
 
@@ -10,8 +13,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_module-name"></a> [module-name](#module\_module-name) | git@github.com:carlosrfjunior/terraform-modules.git//databricks/aws/workspace | v1.0.0 |
-| <a name="module_tagging"></a> [tagging](#module\_tagging) | git@github.com:carlosrfjunior/terraform-modules.git//aws/tagging | v1.0.0 |
+| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../ | n/a |
 
 ## Resources
 
@@ -21,7 +23,8 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_tags"></a> [tags](#input\_tags) | (Optional) List of tags to be propagated across all assets. | `map(string)` | `{}` | no |
+| <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | (Required) AWS region where the assets will be deployed | `string` | n/a | yes |
 
 ## Outputs
 

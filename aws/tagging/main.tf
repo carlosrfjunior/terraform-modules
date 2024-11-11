@@ -1,3 +1,10 @@
+/*
+* # AWS Tagging module
+*
+* This template is intended for converting company-defined tags
+*
+*/
+
 locals {
   tags = {
     "company:owner"               = var.owner

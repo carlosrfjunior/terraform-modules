@@ -1,11 +1,12 @@
 # AWS EKS for Data Team in Dev Environment
 ## Naming convention
-- {owner}-{env}{3}-[{suffix}]-{resource}{2,3}
-- data-dev-eks
+- {owner}\_{env}{3}\_[{suffix}]\_{resource}{2,3}
 
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
 
 ## Providers
 
@@ -15,7 +16,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_owner-env-suffix-resource"></a> [owner-env-suffix-resource](#module\_owner-env-suffix-resource) | ../ | n/a |
+| <a name="module_owner_env_suffix_resource"></a> [owner\_env\_suffix\_resource](#module\_owner\_env\_suffix\_resource) | ../ | n/a |
 
 ## Resources
 

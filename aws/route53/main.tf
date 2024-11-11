@@ -1,5 +1,5 @@
 /*
-* # AWS Route53 module
+* # AWS Route53 Module
 *
 * This module has the basic function of creating a new DNS record in AWS Route53 in a single account or cross-accounts.
 *

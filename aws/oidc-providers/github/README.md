@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/carlosrfjunior/terraform-modules">
+    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+  </a>
+</p>
+
 # AWS IAM Provider for Github
 This module is intended for configuring the integration between AWS and Github via AWS IAM OIDC Provider.
 
@@ -17,17 +23,17 @@ locals {
     product             = "aws"
     environment         = "env"
     owner               = "sre"
-    cost-center         = "infrastructure"
+    cost_center         = "infrastructure"
     resource            = "github"
-    data-classification = "false"
+    data_classification = "false"
   }
 }
 
-module "owner-env-suffix-resource" {
+module "owner_env_suffix_resource" {
   source = "../"
 
   region  = "us-east-1"
-  profile = "carlosrfjunior-env"
+  profile = "company-env"
   # inline_policy = jsondecode({})
   managed_policy_arns = []
 
@@ -63,7 +69,7 @@ module "owner-env-suffix-resource" {
 | <a name="input_client_id_list"></a> [client\_id\_list](#input\_client\_id\_list) | (Required) A list of client IDs (also known as `audiences`). | `list(string)` | <pre>[<br/>  "sts.amazonaws.com"<br/>]</pre> | no |
 | <a name="input_cluster_arn_list"></a> [cluster\_arn\_list](#input\_cluster\_arn\_list) | (Optional) List of ARNs of AWS EKS Clusters | `list(string)` | `[]` | no |
 | <a name="input_ecr_name_list"></a> [ecr\_name\_list](#input\_ecr\_name\_list) | (Optional) List of ARNs of AWS ECR Repository | `list(string)` | `[]` | no |
-| <a name="input_github"></a> [github](#input\_github) | (Required) The GitHub organization name and the repository named and branch name. <br/>Example: `organization-name/repo-name` | <pre>list(object({<br/>    repo   = string<br/>    branch = string<br/>  }))</pre> | n/a | yes |
+| <a name="input_github"></a> [github](#input\_github) | (Required) The GitHub organization name and the repository named and branch name.<br/>Example: `organization-name/repo-name` | <pre>list(object({<br/>    repo   = string<br/>    branch = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_iam_access_entries_enabled"></a> [iam\_access\_entries\_enabled](#input\_iam\_access\_entries\_enabled) | (Optional) Access entries allow IAM principals to authenticate to your cluster. Authorization to your cluster is provided by any combination of username, group names, or access policies. For more information, see [IAM access entries](https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html). | <pre>object({<br/>    eks = optional(bool, false)<br/>    ecr = optional(bool, false)<br/>  })</pre> | <pre>{<br/>  "ecr": false,<br/>  "eks": false<br/>}</pre> | no |
 | <a name="input_inline_policy"></a> [inline\_policy](#input\_inline\_policy) | (Optional) Configuration block defining an exclusive set of IAM inline policies associated with the IAM role. | <pre>list(object({<br/>    name   = optional(string, "")<br/>    policy = optional(any, {})<br/>  }))</pre> | `[]` | no |
 | <a name="input_managed_policy_arns"></a> [managed\_policy\_arns](#input\_managed\_policy\_arns) | Set of exclusive IAM managed policy ARNs to attach to the IAM role. If this attribute is not configured, Terraform will ignore policy attachments to this resource. | `list(string)` | `[]` | no |

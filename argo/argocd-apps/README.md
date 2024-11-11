@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/carlosrfjunior/terraform-modules">
+    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+  </a>
+</p>
+
 # AWS EKS ArgoCD Module
 
 ## Usage examples
@@ -57,21 +63,23 @@ variable "app_name" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
-| <a name="provider_time"></a> [time](#provider\_time) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.75.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.12.1 |
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.61 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.15.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | 0.12.1 |
 ## Resources
 
 | Name | Type |
 |------|------|
-| [time_sleep.eks_status](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [time_sleep.eks_status](https://registry.terraform.io/providers/hashicorp/time/0.12.1/docs/resources/sleep) | resource |
 | [aws_eks_cluster.eks](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.eks](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
-| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -80,11 +88,10 @@ variable "app_name" {
 | <a name="input_app_label_prefix"></a> [app\_label\_prefix](#input\_app\_label\_prefix) | (Optional) Prefix for application labels in Kubernetes | `string` | `"app.kubernetes.io/"` | no |
 | <a name="input_argocd"></a> [argocd](#input\_argocd) | ArgoCD Server configuration values | `any` | `{}` | no |
 | <a name="input_argocd_app"></a> [argocd\_app](#input\_argocd\_app) | ArgoCD Application configuration values | `any` | `{}` | no |
-| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, false)<br/>    nginx_ingress_external       = optional(bool, false)<br/>    nginx_ingress_internal       = optional(bool, false)<br/>    cluster_autoscaler           = optional(bool, false)<br/>    kube_prometheus_stack        = optional(bool, false)<br/>    metrics_server               = optional(bool, false)<br/>    external_dns                 = optional(bool, false)<br/>    argocd                       = optional(bool, false)<br/>    argocd_app                   = optional(bool, false)<br/>    argo_rollouts                = optional(bool, false)<br/>    external_secrets             = optional(bool, false)<br/>    secrets_store_csi_driver     = optional(bool, false)<br/>    velero                       = optional(bool, false)<br/>    kyverno                      = optional(bool, false)<br/>    kyverno_policies             = optional(bool, false)<br/>    prefect_server               = optional(bool, false)<br/>    prefect_worker               = optional(bool, false)<br/>    prefect_exporter             = optional(bool, false)<br/>    open_metadata                = optional(bool, false)<br/>    open_metadata_deps           = optional(bool, false)<br/>  })</pre> | `{}` | no |
+| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, false)<br/>    nginx_ingress_external       = optional(bool, false)<br/>    nginx_ingress_internal       = optional(bool, false)<br/>    cluster_autoscaler           = optional(bool, false)<br/>    kube_prometheus_stack        = optional(bool, false)<br/>    metrics_server               = optional(bool, false)<br/>    external_dns                 = optional(bool, false)<br/>    argocd                       = optional(bool, false)<br/>    argocd_app                   = optional(bool, false)<br/>    argo_rollouts                = optional(bool, false)<br/>    external_secrets             = optional(bool, false)<br/>    secrets_store_csi_driver     = optional(bool, false)<br/>    velero                       = optional(bool, false)<br/>    kyverno                      = optional(bool, false)<br/>    kyverno_policies             = optional(bool, false)<br/>  })</pre> | `{}` | no |
 | <a name="input_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#input\_aws\_load\_balancer\_controller) | AWS Load Balancer Controller configuration values | `any` | `{}` | no |
-| <a name="input_aws_route53_zone_arns"></a> [aws\_route53\_zone\_arns](#input\_aws\_route53\_zone\_arns) | (Optional) The Amazon Resource Name (ARN) of the Hosted Zone. | `list` | `[]` | no |
+| <a name="input_aws_route53_zone_arns"></a> [aws\_route53\_zone\_arns](#input\_aws\_route53\_zone\_arns) | (Optional) The Amazon Resource Name (ARN) of the Hosted Zone. | `list(string)` | `[]` | no |
 | <a name="input_cluster_autoscaler"></a> [cluster\_autoscaler](#input\_cluster\_autoscaler) | Cluster Autoscaler configuration values | `any` | `{}` | no |
-| <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | (Required) Endpoint for your Kubernetes API server | `string` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | (Required) Name of the EKS cluster. | `string` | n/a | yes |
 | <a name="input_cluster_status"></a> [cluster\_status](#input\_cluster\_status) | (Optional) The status of the EKS cluster. | `string` | `"ACTIVE"` | no |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | (Required) Kubernetes <major>.<minor> version to use for the EKS cluster (i.e.: 1.30) | `string` | n/a | yes |
@@ -94,16 +101,9 @@ variable "app_name" {
 | <a name="input_kyverno_policies"></a> [kyverno\_policies](#input\_kyverno\_policies) | Kyverno configuration values, Ref: `https://kyverno.io/policies/pod-security` | `any` | `{}` | no |
 | <a name="input_metrics_server"></a> [metrics\_server](#input\_metrics\_server) | Metrics Server configuration values | `any` | `{}` | no |
 | <a name="input_nginx_ingress_external"></a> [nginx\_ingress\_external](#input\_nginx\_ingress\_external) | NGINX Ingress (External) Controller configuration values | `any` | `{}` | no |
-| <a name="input_nginx_ingress_external_ssl_certs"></a> [nginx\_ingress\_external\_ssl\_certs](#input\_nginx\_ingress\_external\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list` | `[]` | no |
+| <a name="input_nginx_ingress_external_ssl_certs"></a> [nginx\_ingress\_external\_ssl\_certs](#input\_nginx\_ingress\_external\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list(string)` | `[]` | no |
 | <a name="input_nginx_ingress_internal"></a> [nginx\_ingress\_internal](#input\_nginx\_ingress\_internal) | NGINX Ingress (Internal) Controller configuration values | `any` | `{}` | no |
-| <a name="input_nginx_ingress_internal_ssl_certs"></a> [nginx\_ingress\_internal\_ssl\_certs](#input\_nginx\_ingress\_internal\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list` | `[]` | no |
-| <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | (Required) The ARN of the OIDC Provider if `enable_irsa = true` | `string` | n/a | yes |
-| <a name="input_open_metadata"></a> [open\_metadata](#input\_open\_metadata) | Open Metadata configuration values, Ref: `https://docs.open-metadata.org/latest/deployment/kubernetes/helm-values` | `any` | `{}` | no |
-| <a name="input_open_metadata_deps"></a> [open\_metadata\_deps](#input\_open\_metadata\_deps) | Open Metadata configuration values, Ref: `https://docs.open-metadata.org/latest/deployment/kubernetes/helm-values` | `any` | `{}` | no |
-| <a name="input_partition"></a> [partition](#input\_partition) | (Optional) The current AWS partition in which Terraform is working. | <pre>object({<br/>    id                 = optional(string, "aws")<br/>    dns_suffix         = optional(string, "amazonaws.com")<br/>    partition          = optional(string, "aws")<br/>    reverse_dns_prefix = optional(string, "com.amazonaws")<br/>  })</pre> | <pre>{<br/>  "dns_suffix": "amazonaws.com",<br/>  "id": "aws",<br/>  "partition": "aws",<br/>  "reverse_dns_prefix": "com.amazonaws"<br/>}</pre> | no |
-| <a name="input_prefect_exporter"></a> [prefect\_exporter](#input\_prefect\_exporter) | Perfect exporter configuration values | `any` | `{}` | no |
-| <a name="input_prefect_server"></a> [prefect\_server](#input\_prefect\_server) | Perfect Server configuration values | `any` | `{}` | no |
-| <a name="input_prefect_worker"></a> [prefect\_worker](#input\_prefect\_worker) | Perfect Worker configuration values | `any` | `{}` | no |
+| <a name="input_nginx_ingress_internal_ssl_certs"></a> [nginx\_ingress\_internal\_ssl\_certs](#input\_nginx\_ingress\_internal\_ssl\_certs) | (Optional) NGINX Ingress SSL Certifications ARN. | `list(string)` | `[]` | no |
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS Region to provider | `string` | n/a | yes |
 | <a name="input_secrets_store_csi_driver"></a> [secrets\_store\_csi\_driver](#input\_secrets\_store\_csi\_driver) | Secrets Store CSI Driver configuration values | `any` | `{}` | no |
