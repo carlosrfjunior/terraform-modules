@@ -40,21 +40,6 @@ variable "aws_route53" {
   type        = any
   default     = {}
 }
-# variable "partition" {
-#   type = object({
-#     id                 = optional(string, "aws")
-#     dns_suffix         = optional(string, "amazonaws.com")
-#     partition          = optional(string, "aws")
-#     reverse_dns_prefix = optional(string, "com.amazonaws")
-#   })
-#   default = {
-#     id                 = "aws"
-#     dns_suffix         = "amazonaws.com"
-#     partition          = "aws"
-#     reverse_dns_prefix = "com.amazonaws"
-#   }
-#   description = "(Optional) The current AWS partition in which Terraform is working."
-# }
 
 variable "create" {
   type        = bool

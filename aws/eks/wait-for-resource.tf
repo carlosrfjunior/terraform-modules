@@ -9,4 +9,6 @@ resource "time_sleep" "wait_for_resources" {
     cluster_status   = module.eks.cluster_status
   }
 
+  depends_on = [module.eks]
+
 }
