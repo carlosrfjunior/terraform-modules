@@ -16,19 +16,11 @@ variable "cluster_version" {
   type        = string
   description = "(Required) Kubernetes <major>.<minor> version to use for the EKS cluster (i.e.: 1.30)"
 }
-# variable "cluster_endpoint" {
-#   type        = string
-#   description = "(Required) Endpoint for your Kubernetes API server"
-# }
 variable "cluster_status" {
   type        = string
   description = "(Optional) The status of the EKS cluster."
   default     = "ACTIVE"
 }
-# variable "oidc_provider_arn" {
-#   type        = string
-#   description = "(Required) The ARN of the OIDC Provider if `enable_irsa = true`"
-# }
 variable "argocd_apps_enabled" {
   type = object({
     aws_load_balancer_controller = optional(bool, false)
@@ -46,6 +38,7 @@ variable "argocd_apps_enabled" {
     velero                       = optional(bool, false)
     kyverno                      = optional(bool, false)
     kyverno_policies             = optional(bool, false)
+    atlantis                     = optional(bool, false)
   })
   default     = {}
   description = "(Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed."
@@ -66,6 +59,11 @@ variable "tags" {
 ################################################################################
 # ArgoCD Applications Custom
 ################################################################################
+variable "install_apps" {
+  default     = true
+  type        = bool
+  description = "(Optional) Install the ArgoCD Applications."
+}
 variable "add_apps" {
   default     = {}
   type        = map(any)
@@ -176,6 +174,17 @@ variable "kyverno" {
 
 variable "kyverno_policies" {
   description = "Kyverno configuration values, Ref: `https://kyverno.io/policies/pod-security`"
+  type        = any
+  default     = {}
+}
+
+variable "atlantis" {
+  description = "Atlantis configuration values, Ref: `https://www.runatlantis.io/docs/deployment.html#kubernetes-helm-chart`"
+  type        = any
+  default     = {}
+}
+variable "external_secrets" {
+  description = "External Secrets configuration values, Ref: `https://external-secrets.io/latest/introduction/getting-started/`"
   type        = any
   default     = {}
 }

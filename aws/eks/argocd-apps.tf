@@ -10,6 +10,7 @@ module "argocd_apps" {
   cluster_version = time_sleep.wait_for_resources.triggers.cluster_version
   cluster_status  = time_sleep.wait_for_resources.triggers.cluster_status
 
+  install_apps        = var.install_apps
   argocd_apps_enabled = var.argocd_apps_enabled
   argocd_app          = var.argocd_app
   argocd              = var.argocd
@@ -21,10 +22,12 @@ module "argocd_apps" {
   velero                                = var.velero
   kyverno                               = var.kyverno
   kyverno_policies                      = var.kyverno_policies
+  atlantis                              = var.atlantis
   external_dns                          = var.external_dns
   metrics_server                        = var.metrics_server
   cluster_autoscaler                    = var.cluster_autoscaler
   kube_prometheus_stack                 = var.kube_prometheus_stack
+  external_secrets                      = var.external_secrets
   secrets_store_csi_driver              = var.secrets_store_csi_driver
   nginx_ingress_external                = var.nginx_ingress_external
   nginx_ingress_internal                = var.nginx_ingress_internal
