@@ -14,14 +14,7 @@ module "argocd_app" {
     helm = helm.eks
   }
 
-  # create = var.argocd_apps_enabled.argocd_app
-
-  # activate_wait = false
-
-  # cluster_name              = var.cluster_name
-  # cluster_endpoint          = var.cluster_endpoint
-  # cluster_version           = var.cluster_version
-  # cluster_oidc_provider_arn = var.oidc_provider_arn
+  create = var.install_apps
 
 
   # https://github.com/argoproj/argo-helm/blob/main/charts/argocd-apps

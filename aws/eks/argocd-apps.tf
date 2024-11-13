@@ -10,6 +10,7 @@ module "argocd_apps" {
   cluster_version = time_sleep.wait_for_resources.triggers.cluster_version
   cluster_status  = time_sleep.wait_for_resources.triggers.cluster_status
 
+  install_apps        = var.install_apps
   argocd_apps_enabled = var.argocd_apps_enabled
   argocd_app          = var.argocd_app
   argocd              = var.argocd

@@ -25,7 +25,6 @@ variable "availability_zones" {
     error_message = "The availability_zones variable cannot be null!"
   }
 }
-
 variable "region" {
   type        = string
   description = "(Required) AWS region to provider"
@@ -129,6 +128,7 @@ variable "argocd_apps_enabled" {
     velero                       = optional(bool, true)
     kyverno_policies             = optional(bool, true)
     kyverno                      = optional(bool, true)
+    atlantis                     = optional(bool, true)
   })
   default = {
     aws_load_balancer_controller = true
@@ -145,6 +145,7 @@ variable "argocd_apps_enabled" {
     velero                       = true
     kyverno_policies             = true
     kyverno                      = true
+    atlantis                     = true
   }
   description = "(Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed."
 }
@@ -199,6 +200,11 @@ variable "kube_proxy" {
 ################################################################################
 # ArgoCD Applications Custom
 ################################################################################
+variable "install_apps" {
+  default     = true
+  type        = bool
+  description = "(Optional) Install the ArgoCD Applications."
+}
 variable "aws_route53_zone_arns" {
   type        = list(string)
   description = "(Optional) The Amazon Resource Name (ARN) of the Hosted Zone."
