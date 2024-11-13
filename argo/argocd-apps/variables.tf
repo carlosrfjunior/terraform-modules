@@ -183,3 +183,8 @@ variable "atlantis" {
   type        = any
   default     = {}
 }
+variable "external_secrets" {
+  description = "External Secrets configuration values, Ref: `https://external-secrets.io/latest/introduction/getting-started/`"
+  type        = any
+  default     = {}
+}

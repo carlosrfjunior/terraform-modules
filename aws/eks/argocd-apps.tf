@@ -19,6 +19,7 @@ module "argocd_apps" {
   nginx_ingress_external_ssl_certs = concat(try(values(aws_acm_certificate.cert)[*].arn, []), try(var.nginx_ingress_external_ssl_certs, []))
   nginx_ingress_internal_ssl_certs = concat(try(values(aws_acm_certificate.cert)[*].arn, []), try(var.nginx_ingress_internal_ssl_certs, []))
 
+  atlantis                              = var.atlantis
   velero                                = var.velero
   kyverno                               = var.kyverno
   kyverno_policies                      = var.kyverno_policies
@@ -26,6 +27,7 @@ module "argocd_apps" {
   metrics_server                        = var.metrics_server
   cluster_autoscaler                    = var.cluster_autoscaler
   kube_prometheus_stack                 = var.kube_prometheus_stack
+  external_secrets                      = var.external_secrets
   secrets_store_csi_driver              = var.secrets_store_csi_driver
   nginx_ingress_external                = var.nginx_ingress_external
   nginx_ingress_internal                = var.nginx_ingress_internal

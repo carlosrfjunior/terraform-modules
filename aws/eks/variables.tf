@@ -302,3 +302,14 @@ variable "kyverno_policies" {
   type        = any
   default     = {}
 }
+
+variable "atlantis" {
+  description = "Atlantis configuration values, Ref: `https://www.runatlantis.io/docs/deployment.html#kubernetes-helm-chart`"
+  type        = any
+  default     = {}
+}
+variable "external_secrets" {
+  description = "External Secrets configuration values, Ref: `https://external-secrets.io/latest/introduction/getting-started/`"
+  type        = any
+  default     = {}
+}

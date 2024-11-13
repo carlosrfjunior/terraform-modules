@@ -18,5 +18,6 @@ locals {
     "kyverno_policies"                      = var.argocd_apps_enabled.kyverno_policies && var.argocd_apps_enabled.kyverno ? local.kyverno_policies : null,
     "kyverno"                               = var.argocd_apps_enabled.kyverno ? local.kyverno : null,
     "atlantis"                              = var.argocd_apps_enabled.atlantis ? local.atlantis : null,
+    "external_secrets"                      = var.argocd_apps_enabled.external_secrets ? local.external_secrets : null,
   }
 }
