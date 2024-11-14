@@ -31,7 +31,7 @@ variable "repository_lifecycle_policy" {
 variable "repository_image_tag_mutability" {
   type        = string
   description = "The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE`"
-  default     = "MUTABLE"
+  default     = "IMMUTABLE"
 
 }
 variable "iam_access_entries_enabled" {
