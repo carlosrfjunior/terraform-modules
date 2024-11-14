@@ -23,6 +23,17 @@ variable "ecr_name_list" {
   description = "(Optional) List of ARNs of AWS ECR Repository"
   default     = []
 }
+variable "repository_lifecycle_policy" {
+  type        = any
+  description = "(Optional) The policy document. This is a JSON formatted `string`. See more details about [Policy Parameters](http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle_policy_parameters) in the official AWS docs"
+  default     = {}
+}
+variable "repository_image_tag_mutability" {
+  type        = string
+  description = "The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE`"
+  default     = "MUTABLE"
+
+}
 variable "iam_access_entries_enabled" {
   type = object({
     eks = optional(bool, false)
