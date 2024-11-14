@@ -64,10 +64,21 @@ variable "install_apps" {
   type        = bool
   description = "(Optional) Install the ArgoCD Applications."
 }
-variable "add_apps" {
+variable "add_custom_apps" {
   default     = {}
-  type        = any
-  description = "(Optional) Add new applications that are present in the enabled list."
+  type        = map(any)
+  description = <<EOT
+  (Optional) Add new applications that are present in the enabled list."
+  **Example:**
+  add_custom_apps = {
+    "custom-app-name" = {
+      name                  = "app-name"
+      additionalLabels      = {}
+      additionalAnnotations = {}
+      ...
+    }
+  }
+  EOT
 }
 variable "aws_route53_zone_arns" {
   type        = list(string)
