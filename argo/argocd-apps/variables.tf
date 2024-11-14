@@ -66,7 +66,7 @@ variable "install_apps" {
 }
 variable "add_apps" {
   default     = {}
-  type        = map(any)
+  type        = any
   description = "(Optional) Add new applications that are present in the enabled list."
 }
 variable "aws_route53_zone_arns" {
