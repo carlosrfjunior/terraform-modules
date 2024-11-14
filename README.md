@@ -6,7 +6,7 @@
 
 # Terraform Modules
 
-Custom terraform modules from AWS, Databricks and other providers.
+Custom terraform modules from AWS and other providers.
 
 ## Prerequisites
 
