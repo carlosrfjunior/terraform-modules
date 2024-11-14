@@ -1,7 +1,7 @@
 locals {
   additional_labels = { for k, v in try(var.tags, {}) : format("%s%s", var.app_label_prefix, replace(k, ":", "-")) => replace(replace(v, ":", "_"), "@", "-") }
   argocd_apps_list  = { for k, v in local.argocd_apps_map : k => v if v != null }
-  add_apps_list     = { for k, v in var.add_apps : k => v if v != null }
+  add_apps_list     = { for k, v in var.add_custom_apps : k => v if v != null }
   argocd_apps       = merge(local.argocd_apps_list, local.add_apps_list)
 }
 
