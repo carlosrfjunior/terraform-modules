@@ -10,8 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
-    - name: Render terraform docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
     - name: Install Dependencies
       run: |
         curl -L "$(curl -s https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | grep -o -E -m 1 "https://.+?-linux-amd64.tar.gz")" > terraform-docs.tar.gz && tar xvf terraform-docs.tar.gz && rm terraform-docs.tar.gz && sudo mv terraform-docs /usr/bin/
