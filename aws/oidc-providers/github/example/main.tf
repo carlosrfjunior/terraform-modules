@@ -4,12 +4,16 @@
 */
 locals {
   tags = {
-    product             = "aws"
-    environment         = "env"
-    owner               = "sre"
-    cost_center         = "infrastructure"
-    resource            = "github"
-    data_classification = "false"
+    application_id        = "WebApplicationsX"
+    business_unit_id      = "DevOps"
+    cost_center           = "Infrastructure"
+    owner                 = "Operations"
+    layer_id              = "Web_Layer"
+    environment_id        = "Prod"
+    operations_owner      = "Squad01"
+    disaster_recovery_rpo = ""
+    data_classification   = "Restricted"
+    compliance_framework  = ""
   }
 }
 

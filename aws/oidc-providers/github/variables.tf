@@ -51,6 +51,12 @@ variable "tags" {
   description = "(Required) the tags to add to created resources"
 }
 
+variable "tags_enabled" {
+  type        = bool
+  default     = true
+  description = "(Optional) Enable/Disable tags"
+}
+
 variable "oidc_url" {
   type        = string
   default     = "https://token.actions.githubusercontent.com"

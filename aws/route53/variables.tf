@@ -13,6 +13,11 @@ variable "tags" {
   type        = map(string)
   description = "(Optional) the tags to add to created resources"
 }
+variable "tags_enabled" {
+  type        = bool
+  default     = true
+  description = "(Optional) Enable/Disable tags"
+}
 
 variable "aws_route53" {
   type        = any
