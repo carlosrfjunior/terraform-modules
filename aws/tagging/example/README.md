@@ -13,7 +13,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../ | n/a |
+| <a name="module_tagging_disable"></a> [tagging\_disable](#module\_tagging\_disable) | ../ | n/a |
+| <a name="module_tagging_prod_fail"></a> [tagging\_prod\_fail](#module\_tagging\_prod\_fail) | ../ | n/a |
+| <a name="module_tagging_prod_success"></a> [tagging\_prod\_success](#module\_tagging\_prod\_success) | ../ | n/a |
 
 ## Resources
 
@@ -24,7 +26,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
-| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | (Required) AWS region where the assets will be deployed | `string` | n/a | yes |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | (Required) AWS region where the assets will be deployed | `string` | `"us-east-1"` | no |
 
 ## Outputs
 

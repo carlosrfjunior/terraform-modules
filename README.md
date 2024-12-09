@@ -1,11 +1,12 @@
   <p align="center">
     <a href="https://github.com/carlosrfjunior/terraform-modules">
-      <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+      <image src="https://raw.githubusercontent.com/carlosrfjunior/carlosrfjunior/main/assets/gopher-iron-man-flying.png" style="width: 300px;">
     </a>
   </p>
 
 # Terraform Modules
 
+This project aims to demonstrate some practices of development structures of some terraform modules.
 Custom terraform modules from AWS and other providers.
 
 ## Prerequisites
@@ -22,12 +23,13 @@ A pre-commit automation has been added to keep repository documentation up to da
 
 ```shell
 pre-commit install
+pre-commit run -a
 ```
 
 ## Example of use
 
 ```hcl
-module "module-name" {
+module "module_name" {
   source = "git@github.com:carlosrfjunior/terraform-modules.git//<provider>/<subdir>/<resource>?ref=v1.0.0
 }
 ```

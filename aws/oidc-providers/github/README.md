@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/carlosrfjunior/terraform-modules">
-    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+    <image src="https://raw.githubusercontent.com/carlosrfjunior/carlosrfjunior/main/assets/gopher-iron-man-flying.png" style="width: 300px;">
   </a>
 </p>
 
@@ -20,12 +20,16 @@ This module is intended for configuring the integration between AWS and Github v
 */
 locals {
   tags = {
-    product             = "aws"
-    environment         = "env"
-    owner               = "sre"
-    cost_center         = "infrastructure"
-    resource            = "github"
-    data_classification = "false"
+    application_id        = "WebApplicationsX"
+    business_unit_id      = "DevOps"
+    cost_center           = "Infrastructure"
+    owner                 = "Operations"
+    layer_id              = "Web_Layer"
+    environment_id        = "Prod"
+    operations_owner      = "Squad01"
+    disaster_recovery_rpo = ""
+    data_classification   = "Restricted"
+    compliance_framework  = ""
   }
 }
 
@@ -77,7 +81,10 @@ module "owner_env_suffix_resource" {
 | <a name="input_oidc_url"></a> [oidc\_url](#input\_oidc\_url) | (Required) The URL of the identity provider. Corresponds to the iss claim. | `string` | `"https://token.actions.githubusercontent.com"` | no |
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS region to provider | `string` | n/a | yes |
+| <a name="input_repository_image_tag_mutability"></a> [repository\_image\_tag\_mutability](#input\_repository\_image\_tag\_mutability) | The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE` | `string` | `"IMMUTABLE"` | no |
+| <a name="input_repository_lifecycle_policy"></a> [repository\_lifecycle\_policy](#input\_repository\_lifecycle\_policy) | (Optional) The policy document. This is a JSON formatted `string`. See more details about [Policy Parameters](http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle_policy_parameters) in the official AWS docs | `any` | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Required) the tags to add to created resources | `map(string)` | `{}` | no |
+| <a name="input_tags_enabled"></a> [tags\_enabled](#input\_tags\_enabled) | (Optional) Enable/Disable tags | `bool` | `true` | no |
 | <a name="input_thumbprint_list"></a> [thumbprint\_list](#input\_thumbprint\_list) | (Required) A list of server certificate thumbprints for the OpenID Connect (OIDC) identity provider's server certificate(s). | `list(string)` | <pre>[<br/>  "6938fd4d98bab03faadb97b34396831e3780aea1"<br/>]</pre> | no |
 
 ## Outputs

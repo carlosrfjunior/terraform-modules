@@ -1,16 +1,20 @@
 /*
-* # AWS EKS for Data Team in Dev Environment
+* # AWS EKS in Test Environment
 * ## Naming convention
 * - {owner}_{env}{3}_[{suffix}]_{resource}{2,3}
 */
 locals {
   tags = {
-    product             = "aws"
-    environment         = "dev"
-    owner               = "sre"
-    cost-center         = "infrastructure"
-    resource            = "eks"
-    data-classification = "false"
+    application_id        = "WebApplicationsX"
+    business_unit_id      = "DevOps"
+    cost_center           = "Infrastructure"
+    owner                 = "Operations"
+    layer_id              = "Web_Layer"
+    environment_id        = "Prod"
+    operations_owner      = "Squad01"
+    disaster_recovery_rpo = ""
+    data_classification   = "Restricted"
+    compliance_framework  = ""
   }
 }
 

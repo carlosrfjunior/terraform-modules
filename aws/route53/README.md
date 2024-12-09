@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/carlosrfjunior/terraform-modules">
-    <image src="https://avatars.githubusercontent.com/u/180111812?s=400&u=cda6d53ade890c5d47426504081e4fcb1167199d&v=4" style="width: 300px;">
+    <image src="https://raw.githubusercontent.com/carlosrfjunior/carlosrfjunior/main/assets/gopher-iron-man-flying.png" style="width: 300px;">
   </a>
 </p>
 
@@ -69,6 +69,7 @@ module "route53_domains" {
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS region to provider | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) the tags to add to created resources | `map(string)` | `{}` | no |
+| <a name="input_tags_enabled"></a> [tags\_enabled](#input\_tags\_enabled) | (Optional) Enable/Disable tags | `bool` | `true` | no |
 ## Modules
 
 | Name | Source | Version |

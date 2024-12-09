@@ -1,4 +1,4 @@
-# AWS EKS for Data Team in Dev Environment
+# AWS EKS in Test Environment
 ## Naming convention
 - {owner}\_{env}{3}\_[{suffix}]\_{resource}{2,3}
 
