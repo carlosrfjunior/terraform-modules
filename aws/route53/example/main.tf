@@ -1,3 +1,19 @@
+locals {
+  tags = {
+    company_name          = "MyCompany"
+    application_id        = "WebApplicationsX"
+    business_unit_id      = "DevOps"
+    cost_center           = "Infrastructure"
+    owner                 = "Operations"
+    layer_id              = "Web_Layer"
+    environment_id        = "Test"
+    operations_owner      = "Squad01"
+    disaster_recovery_rpo = ""
+    data_classification   = "Restricted"
+    compliance_framework  = ""
+  }
+}
+
 module "route53_domains" {
   source = "../"
 
@@ -14,13 +30,6 @@ module "route53_domains" {
 
   }
 
-  tags = {
-    product             = "aws"
-    environment         = "testing"
-    owner               = "sre"
-    cost_center         = "infrastructure"
-    resource            = "route53"
-    data_classification = "false"
-  }
+  tags = local.tags
 
 }

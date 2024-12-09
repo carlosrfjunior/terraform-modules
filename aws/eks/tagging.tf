@@ -1,6 +1,7 @@
 module "tagging" {
   source                = "../tagging"
   enabled               = var.tags_enabled
+  company_name          = var.tags == null || try(var.tags.company_name, null) == null ? "" : var.tags.company_name
   application_id        = var.tags == null || try(var.tags.application_id, null) == null ? "" : var.tags.application_id
   business_unit_id      = var.tags == null || try(var.tags.business_unit_id, null) == null ? "" : var.tags.business_unit_id
   cost_center           = var.tags == null || try(var.tags.cost_center, null) == null ? "" : var.tags.cost_center

@@ -5,12 +5,13 @@
 */
 locals {
   tags = {
+    company_name          = "MyCompany"
     application_id        = "WebApplicationsX"
     business_unit_id      = "DevOps"
     cost_center           = "Infrastructure"
     owner                 = "Operations"
     layer_id              = "Web_Layer"
-    environment_id        = "Prod"
+    environment_id        = "Test"
     operations_owner      = "Squad01"
     disaster_recovery_rpo = ""
     data_classification   = "Restricted"
