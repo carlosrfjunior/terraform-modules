@@ -1,7 +1,13 @@
 /*
 * # AWS Tagging module
 *
-* This template is intended for converting company-defined tags
+* The tagging system allows us to refine management and implement interaction strategies for better resource management. This module allows us to define the internal tag system for the corporation and gives us the possibility of identifying the parties involved.
+* 
+* **References:**
+* 
+* - https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html
+* - https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/building-your-tagging-strategy.html
+* - https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/defining-and-publishing-a-tagging-schema.html
 *
 */
 
