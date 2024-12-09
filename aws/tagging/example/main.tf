@@ -11,6 +11,7 @@ module "tagging_disable" {
 module "tagging_prod_success" {
   source = "../"
 
+  company_name          = "company"
   application_id        = "MobileApplicationsX"
   business_unit_id      = "DevOps"
   cost_center           = "Infrastructure"
@@ -29,6 +30,7 @@ module "tagging_prod_success" {
 module "tagging_prod_fail" {
   source = "../"
 
+  company_name          = "company"
   application_id        = "WebApplicationsX"
   business_unit_id      = "DevOps"
   cost_center           = "Infrastructure"

@@ -3,6 +3,16 @@ variable "enabled" {
   type        = bool
   default     = true
 }
+variable "company_name" {
+  description = "(Required) Indicates the company name associated with the resource."
+  type        = string
+  default     = ""
+  validation {
+    condition     = var.enabled ? can(regex("^[0-9A-Za-z-]+$", var.company_name)) : true
+    error_message = "The company name field cannot be empty and must follow the following pattern [0-9A-Za-z-].\nReference: ${local.ref_url}"
+  }
+
+}
 variable "application_id" {
   description = "(Required) Indicates the application ID associated with the resource."
   type        = string
