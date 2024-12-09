@@ -6,6 +6,7 @@
 
 # Terraform Modules
 
+This project aims to demonstrate some practices of development structures of some terraform modules.
 Custom terraform modules from AWS and other providers.
 
 ## Prerequisites
@@ -22,12 +23,13 @@ A pre-commit automation has been added to keep repository documentation up to da
 
 ```shell
 pre-commit install
+pre-commit run -a
 ```
 
 ## Example of use
 
 ```hcl
-module "module-name" {
+module "module_name" {
   source = "git@github.com:carlosrfjunior/terraform-modules.git//<provider>/<subdir>/<resource>?ref=v1.0.0
 }
 ```

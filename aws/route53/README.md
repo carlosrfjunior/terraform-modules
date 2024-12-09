@@ -69,6 +69,7 @@ module "route53_domains" {
 | <a name="input_profile"></a> [profile](#input\_profile) | (Optional) AWS Profile to provider | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) AWS region to provider | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) the tags to add to created resources | `map(string)` | `{}` | no |
+| <a name="input_tags_enabled"></a> [tags\_enabled](#input\_tags\_enabled) | (Optional) Enable/Disable tags | `bool` | `true` | no |
 ## Modules
 
 | Name | Source | Version |

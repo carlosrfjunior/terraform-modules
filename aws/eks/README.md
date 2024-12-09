@@ -64,7 +64,8 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_access_entries"></a> [access\_entries](#input\_access\_entries) | Map of access entries to add to the cluster | `any` | `{}` | no |
 | <a name="input_argocd"></a> [argocd](#input\_argocd) | ArgoCD Server configuration values | `any` | `{}` | no |
 | <a name="input_argocd_app"></a> [argocd\_app](#input\_argocd\_app) | ArgoCD Application configuration values | `any` | `{}` | no |
-| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, true)<br/>    nginx_ingress_external       = optional(bool, true)<br/>    nginx_ingress_internal       = optional(bool, true)<br/>    cluster_autoscaler           = optional(bool, true)<br/>    kube_prometheus_stack        = optional(bool, true)<br/>    metrics_server               = optional(bool, true)<br/>    external_dns                 = optional(bool, true)<br/>    argocd                       = optional(bool, true)<br/>    argocd_app                   = optional(bool, true)<br/>    argo_rollouts                = optional(bool, true)<br/>    secrets_store_csi_driver     = optional(bool, true)<br/>    velero                       = optional(bool, true)<br/>    kyverno_policies             = optional(bool, true)<br/>    kyverno                      = optional(bool, true)<br/>  })</pre> | <pre>{<br/>  "argo_rollouts": true,<br/>  "argocd": true,<br/>  "argocd_app": true,<br/>  "aws_load_balancer_controller": true,<br/>  "cluster_autoscaler": true,<br/>  "external_dns": true,<br/>  "kube_prometheus_stack": true,<br/>  "kyverno": true,<br/>  "kyverno_policies": true,<br/>  "metrics_server": true,<br/>  "nginx_ingress_external": true,<br/>  "nginx_ingress_internal": true,<br/>  "secrets_store_csi_driver": true,<br/>  "velero": true<br/>}</pre> | no |
+| <a name="input_argocd_apps_enabled"></a> [argocd\_apps\_enabled](#input\_argocd\_apps\_enabled) | (Optional) ArgoCD Applications: Map of predefined Addons. Allows you to `enable` and `disable` them when needed. | <pre>object({<br/>    aws_load_balancer_controller = optional(bool, true)<br/>    nginx_ingress_external       = optional(bool, true)<br/>    nginx_ingress_internal       = optional(bool, true)<br/>    cluster_autoscaler           = optional(bool, true)<br/>    kube_prometheus_stack        = optional(bool, true)<br/>    metrics_server               = optional(bool, true)<br/>    external_dns                 = optional(bool, true)<br/>    argocd                       = optional(bool, true)<br/>    argocd_app                   = optional(bool, true)<br/>    argo_rollouts                = optional(bool, true)<br/>    secrets_store_csi_driver     = optional(bool, true)<br/>    velero                       = optional(bool, true)<br/>    kyverno_policies             = optional(bool, true)<br/>    kyverno                      = optional(bool, true)<br/>    atlantis                     = optional(bool, true)<br/>  })</pre> | <pre>{<br/>  "argo_rollouts": true,<br/>  "argocd": true,<br/>  "argocd_app": true,<br/>  "atlantis": true,<br/>  "aws_load_balancer_controller": true,<br/>  "cluster_autoscaler": true,<br/>  "external_dns": true,<br/>  "kube_prometheus_stack": true,<br/>  "kyverno": true,<br/>  "kyverno_policies": true,<br/>  "metrics_server": true,<br/>  "nginx_ingress_external": true,<br/>  "nginx_ingress_internal": true,<br/>  "secrets_store_csi_driver": true,<br/>  "velero": true<br/>}</pre> | no |
+| <a name="input_atlantis"></a> [atlantis](#input\_atlantis) | Atlantis configuration values, Ref: `https://www.runatlantis.io/docs/deployment.html#kubernetes-helm-chart` | `any` | `{}` | no |
 | <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | (Optional) If configured, the module will create the subnets according to the list provided. Otherwise, it will follow the standard flow, creating them in the first 3 zones. | `list(string)` | `[]` | no |
 | <a name="input_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#input\_aws\_load\_balancer\_controller) | AWS Load Balancer Controller configuration values | `any` | `{}` | no |
 | <a name="input_aws_route53"></a> [aws\_route53](#input\_aws\_route53) | (Optional) Configure an existing DNS or create a new one in AWS Route53 | `any` | `{}` | no |
@@ -85,6 +86,8 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_efs_csi_driver"></a> [efs\_csi\_driver](#input\_efs\_csi\_driver) | AWS EBS CSI Driver configuration values | `any` | `{}` | no |
 | <a name="input_eks_pod_identity_agent"></a> [eks\_pod\_identity\_agent](#input\_eks\_pod\_identity\_agent) | AWS EKS POD Identity configuration values | `any` | `{}` | no |
 | <a name="input_external_dns"></a> [external\_dns](#input\_external\_dns) | external-dns configuration values | `any` | `{}` | no |
+| <a name="input_external_secrets"></a> [external\_secrets](#input\_external\_secrets) | External Secrets configuration values, Ref: `https://external-secrets.io/latest/introduction/getting-started/` | `any` | `{}` | no |
+| <a name="input_install_apps"></a> [install\_apps](#input\_install\_apps) | (Optional) Install the ArgoCD Applications. | `bool` | `true` | no |
 | <a name="input_kube_prometheus_stack"></a> [kube\_prometheus\_stack](#input\_kube\_prometheus\_stack) | Kube Prometheus Stack configuration values | `any` | `{}` | no |
 | <a name="input_kube_proxy"></a> [kube\_proxy](#input\_kube\_proxy) | Kube Proxy configuration values | `any` | `{}` | no |
 | <a name="input_kyverno"></a> [kyverno](#input\_kyverno) | Kyverno configuration values, Ref: `https://kyverno.io/` | `any` | `{}` | no |
@@ -100,6 +103,7 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 | <a name="input_secrets_store_csi_driver"></a> [secrets\_store\_csi\_driver](#input\_secrets\_store\_csi\_driver) | Secrets Store CSI Driver configuration values | `any` | `{}` | no |
 | <a name="input_secrets_store_csi_driver_provider_aws"></a> [secrets\_store\_csi\_driver\_provider\_aws](#input\_secrets\_store\_csi\_driver\_provider\_aws) | Secrets Store CSI Driver for Provider AWS configuration values | `any` | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) the tags to add to created resources | `map(string)` | `{}` | no |
+| <a name="input_tags_enabled"></a> [tags\_enabled](#input\_tags\_enabled) | (Optional) Enable/Disable tags | `bool` | `true` | no |
 | <a name="input_velero"></a> [velero](#input\_velero) | Velero configuration values | `any` | `{}` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | (Optional) The IPv4 CIDR block for the VPC. CIDR can be explicitly set or it can be derived from IPAM using `ipv4_netmask_length` & `ipv4_ipam_pool_id`. | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vpc_cni"></a> [vpc\_cni](#input\_vpc\_cni) | AWS VPC CNI configuration values | `any` | `{}` | no |
@@ -175,18 +179,22 @@ This module allows the installation and configuration of AWS EKS/Kubernetes and 
 `Source Reference File:` [example/main.tf](example/main.tf)
 ```hcl
 /*
-* # AWS EKS for Data Team in Dev Environment
+* # AWS EKS in Test Environment
 * ## Naming convention
 * - {owner}_{env}{3}_[{suffix}]_{resource}{2,3}
 */
 locals {
   tags = {
-    product             = "aws"
-    environment         = "dev"
-    owner               = "sre"
-    cost-center         = "infrastructure"
-    resource            = "eks"
-    data-classification = "false"
+    application_id        = "WebApplicationsX"
+    business_unit_id      = "DevOps"
+    cost_center           = "Infrastructure"
+    owner                 = "Operations"
+    layer_id              = "Web_Layer"
+    environment_id        = "Prod"
+    operations_owner      = "Squad01"
+    disaster_recovery_rpo = ""
+    data_classification   = "Restricted"
+    compliance_framework  = ""
   }
 }
 
