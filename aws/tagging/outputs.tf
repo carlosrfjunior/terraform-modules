@@ -1,8 +1,6 @@
 output "tags" {
   description = "Tags which are applicable to all resources - map of `{key: value}` pairs"
-  value       = local.tags
-  # {"carlosrfjunior:created-by"          = data.aws_caller_identity.current.user_id}
-  # )
+  value       = var.enabled ? local.tags : {}
 }
 
 output "asg_tags" {
@@ -13,5 +11,6 @@ output "asg_tags" {
       value               = val
       propagate_at_launch = true
     }
+    if var.enabled
   ]
 }
