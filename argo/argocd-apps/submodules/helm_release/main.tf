@@ -4,24 +4,8 @@
 * The purpose of this submodule is to make [helm](https://helm.sh/) functionalities and resources available.
 */
 locals {
-  # cluster_endpoint          = time_sleep.this[*].triggers["cluster_endpoint"]
-  # cluster_name              = time_sleep.this[*].triggers["cluster_name"]
-  # cluster_oidc_provider_arn = time_sleep.this[*].triggers["cluster_oidc_provider_arn"]
   additional_labels = { for k, v in try(var.tags, {}) : format("%s%s", var.additional_labels_prefix, replace(k, "/[@:_ ]/", "-")) => replace(v, "/[@:_ ]/", "_") }
 }
-
-# The purpose of this feature is to ensure that only after the EKS cluster
-# # installation is complete does it allow you to proceed with the application installation.
-# resource "time_sleep" "this" {
-#   count           = var.activate_wait ? 1 : 0
-#   create_duration = var.create_duration
-#   triggers = {
-#     cluster_endpoint          = var.cluster_endpoint
-#     cluster_name              = var.cluster_name
-#     cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
-#     helm_dependencies_list    = join(",", var.helm_dependencies_list)
-#   }
-# }
 
 resource "helm_release" "this" {
 
