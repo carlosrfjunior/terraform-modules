@@ -4,7 +4,7 @@
     </a>
   </p>
 
-# Terraform Modules
+# Terraform Blueprints and Modules
 
 This project aims to demonstrate some practices of development structures of some terraform modules.
 Custom terraform modules from AWS and other providers.
